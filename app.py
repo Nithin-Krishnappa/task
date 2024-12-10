@@ -34,18 +34,16 @@ def home():
 def register():
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password']
-        # Validation for username uniqueness
-        existing_user = User.query.filter_by(username=username).first()
-        if existing_user:
-            flash("Username already exists!")
-        else:
-            hashed_password = generate_password_hash(password, method='sha256')
-            new_user = User(username=username, password=hashed_password)
+        password = generate_password_hash(request.form['password'])
+        new_user = User(username=username, password=password)
+        try:
             db.session.add(new_user)
             db.session.commit()
             flash("Registration successful! Please login.")
             return redirect(url_for('login'))
+        except:
+            db.session.rollback()
+            flash("Username already exists!")
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -88,6 +86,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()  # Ensure the database tables are created
+    db.create_all()  # Ensures the database tables are created
     app.run(debug=True)
