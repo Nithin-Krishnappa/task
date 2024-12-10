@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <h2>Welcome, User!</h2>
+    <form method="post" action="{{ url_for('tasks') }}">
+        <label for="title">Task Title:</label>
+        <input type="text" id="title" name="title" placeholder="Enter Task Title" required>
+        <br>
+        <label for="description">Task Description:</label>
+        <input type="text" id="description" name="description" placeholder="Enter Task Description">
+        <br>
+        <button type="submit">Add Task</button>
+    </form>
+    <h3>Your Tasks</h3>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <strong>{{ task.title }}</strong>: {{ task.description }}
+            <a href="{{ url_for('delete_task', id=task.id) }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
