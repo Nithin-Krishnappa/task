@@ -5,8 +5,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# PostgreSQL Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://your_user:your_password@localhost:5432/your_database'
+# PostgreSQL Configuration (Render)
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    'postgresql://dolist_user:wW72540Xq9lMCd7D5LOiYTuqcM5wshrY@dpg-ctbv1hogph6c73a8i4h0-a:5432/dolist'
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
