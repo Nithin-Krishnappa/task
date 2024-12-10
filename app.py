@@ -24,6 +24,9 @@ class Task(db.Model):
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(300), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+with app.app_context():
+    db.session.execute("SELECT 1")
+    print("Database connection successful")
 
 # Routes
 @app.route('/')
