@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'Nithin_123'
 
 # PostgreSQL Configuration (Render)
-app.config['DATABASE_URI'] = (
+app.config['SQLALCHEMY_DATABASE_URI'] = (
     'postgresql://dolist_user:wW72540Xq9lMCd7D5LOiYTuqcM5wshrY@dpg-ctbv1hogph6c73a8i4h0-a:5432/dolist'
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
