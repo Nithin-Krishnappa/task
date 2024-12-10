@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = 'Nithin_123'
+app.secret_key = 'SQLALCHEMY_DATABASE_URI'
 
 # PostgreSQL Configuration (Render)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dolist_user:wW72540Xq9lMCd7D5LOiYTuqcM5wshrY@dpg-ctbv1hogph6c73a8i4h0-a.oregon-postgres.render.com/dolist'
